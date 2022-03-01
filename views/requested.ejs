@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Requested</title>
+    <style>
+        .requested{
+            color: blue !important;
+        }
+        .banner{
+            height: 0vh;
+        }
+        .navbar{
+            background-color: black;
+            display: inline-block;
+        }
+        th{
+			text-align: center;
+		}
+        td{
+            text-align: center;
+        }
+        .glyphicon{
+            color: red;
+        }
+        .glyphicon-ok{
+            color: green !important;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <div class="container">
+        <div class="card">
+            <div class="card-body ">
+                <!--Table-->
+                <table class="table table-striped">
+                    <!--Table head-->
+                    <thead>
+                        <th colspan="5" class="order-name">Books Requested</th>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Book Author</th>
+                            <th>Reading Level</th>
+                            <th>Accept</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+                    <!--Table body-->
+                    <tbody>
+                        <% for(var i=0; i < result.length; i++) { %>
+                        <tr>
+                            <!-- /admin/addbook/<%= result[i].book_title %> -->
+                            <td class="value1"><%= result[i].book_title %></th>                                                          
+                            <td><%= result[i].book_author %></td>
+                            <td><%= result[i].reading_level %></td>
+                            <td><a  class="accept"><span class="glyphicon glyphicon-ok" style="font-size:18px"></span></a></td>
+                            <td><a href="/admin/requested/delete/<%= result[i].request_id %>"><span class="glyphicon glyphicon-trash" style="font-size:18px"></span></a></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+            </div>
+        </div>
+        <script>
+            var buttons = document.querySelectorAll(".accept").length;
+            for (var i = 0; i < buttons ; i++) {
+                document.querySelectorAll(".accept")[i].addEventListener("click", function() {
+                    console.log(document.querySelectorAll(".value1")[i].innerText);
+            });
+        }
+        </script>
+</body>
+</html>

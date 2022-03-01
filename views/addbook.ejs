@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Add Books</title>
+    <style>
+        .addbook{
+            color: blue !important;
+        }
+        .banner{
+            height: 0vh;
+        }
+        body{
+            background-image: url("/images/bg2.jpg");
+            background-size:cover;
+        }
+        .navbar{
+            background-color: black;
+            display: inline-block;
+        }
+        form{
+            padding:30px;
+        }
+        label{
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <% if(message1.length>0){ %>
+        <div class="alert alert-success" id="message1">
+            <p><span class="glyphicon glyphicon-ok mr-3"></span><%= message1 %></p>
+        </div>
+    <% } %>
+    <form action="/admin/addbook" method="POST">
+        <div class="form-group col-md-5" >
+            <label for="book_title">Book Title</label>
+            <input type="text" class="form-control" id="book_title" name="book_title" placeholder="Book Title">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="book_author">Book Author</label>
+            <input type="text" class="form-control" id="book_author" name="book_Author" placeholder="Book Author">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="book_description">Description</label>
+            <textarea type="text" id="description" class="form-control" name="description" rows="4" cols="50"></textarea>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="exampleFormControlSelect1">Reading Level</label>
+            <select class="form-control" id="reading_level" name="reading_level">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="book_url">Book Url</label>
+            <input type="text" class="form-control" id="book_url" name="book_url" placeholder="Book url">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="book_image">Book Image</label>
+            <input type="file" class="form-control-file" id="book_image" name="book_image">
+        </div>
+        <button type="submit" class="btn btn-success ml-3">Submit</button>
+    </form>
+    <script>
+        setTimeout(function(){
+            document.getElementById("message1").remove();
+        }, 3000);
+    </script>
+</body>
+</html>

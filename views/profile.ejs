@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Profile</title>
+    <style>
+        .profile{
+            color: blue !important;
+        }
+        .banner{
+            height: 0vh;
+        }
+        .navbar{
+            background-color: black;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <% if(message.length>0){ %>
+    <div class="alert alert-success" id="message">
+        <p><span class="glyphicon glyphicon-ok mr-3"></span><%= message %></p>
+    </div>
+    <% } %>
+    <div class="container rounded bg-white mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><%= result[0].name %></span><span class="text-black-50"><%= result[0].email_id %></span><span><a href="/admin/logout">Logout</a></span></div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <form action="/admin/profile" method="POST">
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" name="name" placeholder="first name" value="<%= result[0].name %>"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" name="surname"value="<%= result[0].surname %>" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" name="phno"placeholder="enter phone number" value="<%= result[0].phno %>"></div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" name="postcode" placeholder="enter address line " value="<%= result[0].postcode %>"></div>
+                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" name="state" placeholder="enter state" value="<%= result[0].state %>"></div>
+                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" name="area" placeholder="enter area" value="<%= result[0].area %>"></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email_id" placeholder="enter email id" value="<%= result[0].email_id %>"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control"  name="country" placeholder="country" value="<%= result[0].country %>"></div>
+                        <!-- <div class="col-md-6"><label class="labels">Password</label><input type="text" class="form-control" name="PASSWORD" value="<%= result[0].PASSWORD %>" placeholder="password"></div> -->
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        setTimeout(function(){
+            document.getElementById("message").remove();
+        }, 3000);
+    </script>
+</body>
+</html>
